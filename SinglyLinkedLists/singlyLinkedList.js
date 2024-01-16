@@ -13,7 +13,6 @@ class SinglyLinkedList {
         this.length = 0
     }
 
-
     // Big O(1)
     push(val) {
 

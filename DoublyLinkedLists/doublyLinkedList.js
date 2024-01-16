@@ -6,6 +6,7 @@ class Node {
     }
 }
 
+
 class DoublyLinkedList {
     constructor() {
         this.head = null;
@@ -18,7 +19,7 @@ class DoublyLinkedList {
         var newNode = new Node(val);
         if (this.length === 0) {
             this.head = newNode;
-            this.tail = newNode;
+            this.tail = this.head;
         } else {
             this.tail.next = newNode;
             newNode.prev = this.tail;
@@ -152,6 +153,27 @@ class DoublyLinkedList {
         return true
     }
 
+    // Big O(N)
+    reverse(){
+        if(this.length == 1) return this;
+
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+
+        let next;
+        let prev = null;
+
+        while(node){
+            next = node.next;
+            node.next = prev;
+            node.prev = next;
+            prev = node;
+            node = next;
+        }
+
+        return this
+    }
 }
 
 let list = new DoublyLinkedList()
@@ -168,9 +190,11 @@ list.insert(5, 901)
 
 list.remove(3)
 
-for(let i = 0; i < list.length; i++){
-    console.log(list.get(i).val)
-}
+list.reverse()
+
+// for(let i = 0; i < list.length; i++){
+//     console.log(list.get(i).val)
+// }
 
 
 console.log(list)
